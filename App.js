@@ -1,12 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import MapView from "react-native-maps";
 
 export default function App() {
+  const [state, setState] = useState({
+    pickupCords: {
+      latitude: 22.0869,
+      longitude: 79.5435,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    },
+    dropCords: {
+      latitude: 21.7496,
+      longitude: 79.3353,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    },
+  });
+  const { pickupCords, dropCords } = state;
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <MapView
+        style={StyleSheet.absoluteFill}
+        initialRegion={ pickupCords }
+      />
     </View>
   );
 }
@@ -14,8 +32,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
